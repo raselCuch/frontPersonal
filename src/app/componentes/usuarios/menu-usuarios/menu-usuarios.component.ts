@@ -12,11 +12,6 @@ export class MenuUsuariosComponent implements OnInit {
 
   constructor(private _usuarioService: UsuarioService) {}
 
-  obtenerRol(rol: number): string {
-    // Puedes implementar la lógica para obtener el Rol según tus necesidades
-    return rol === 1 ? 'Admin' : 'Usuario Estándar';
-  }
-
   ngOnInit(): void {
     this.obtenerProductos();
   }

@@ -18,9 +18,9 @@
         <td>{{ arrayUsuarios.UsuNombreUsuario }}</td>
         <td>{{ arrayUsuarios.UsuCorreo }}</td>
         <td>{{ arrayUsuarios.UsuContrasena }}</td>
-        <td>{{ obtenerRol(arrayUsuarios.UsuRol) }}</td>
+        <td>{{ arrayUsuarios.UsuRol }}</td>
         <td>
-          <div *ngIf="arrayUsuarios.UsuRol !==1">
+          <div *ngIf="arrayUsuarios.UsuRol !=='Administrador'">
             <button class="btn btn-danger">
               <i (click)="confirmarEliminarProducto(arrayUsuarios._id)" class="bi bi-trash"></i>
             </button>

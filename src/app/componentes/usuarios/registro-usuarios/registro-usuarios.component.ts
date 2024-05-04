@@ -21,7 +21,7 @@ export class RegistroUsuariosComponent implements OnInit {
       ],
       UsuCorreo: ['', [Validators.required, Validators.email]],
       UsuContrasena: ['', [Validators.required, Validators.minLength(4)]],
-      UsuRol: ['Usuario', [Validators.required]],
+      UsuRol: ['Usuario Estándar', [Validators.required]],
     });
   }
 
@@ -67,5 +67,7 @@ export class RegistroUsuariosComponent implements OnInit {
     console.log(this.formUsuarios);
   }
 
-  limpiar() {}
+  limpiar() {
+    this.router.navigate(['/home/menuUsuario']);
+  }
 }

@@ -13,7 +13,10 @@ export class RegistroChoferesComponent implements OnInit {
   formChoferes!: FormGroup;
   builder = inject(FormBuilder);
 
-  constructor(private router: Router, private _empleadoService: EmpleadoService) {
+  constructor(
+    private router: Router,
+    private _empleadoService: EmpleadoService
+  ) {
     this.formChoferes = this.builder.group({
       EmpDni: ['', [Validators.required, Validators.pattern('^[0-9]{8}$')]],
       EmpNombre: [
@@ -162,12 +165,14 @@ export class RegistroChoferesComponent implements OnInit {
     const empleado: IEmpleado = this.convertFormDataToEmpleado(
       this.formChoferes.value
     );
-    
+
     this._empleadoService.guardarEmpleado(empleado).subscribe((data) => {
       this.router.navigate(['/home/menuChoferes']);
     });
     console.log(empleado);
   }
 
-  limpiar() {}
+  limpiar() {
+    this.router.navigate(['/home/menuChoferes']);
+  }
 }
