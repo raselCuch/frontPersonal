@@ -1,0 +1,62 @@
+<!-- <p>Componente menu-itinerario</p> -->
+<div class="container">
+  <h5 class="mb-4">Registro de Itinerario</h5>
+
+  <form [formGroup]="formItinerario" (ngSubmit)="ejecutar()" (reset)="limpiar()">
+    <div class="row mb-3">
+      <div class="col">
+        <label for="fecha">Fecha:</label>
+        <input type="date" class="form-control" id="fecha" formControlName="fecha" />
+        <span *ngIf="!validaFecha()" class="text-danger">(*)</span>
+      </div>
+
+      <div class="col-auto">
+        <button type="submit" class="btn btn-success d-block mb-2 w-100" [disabled]="!formItinerario.valid">
+          <i class="bi bi-plus"></i> Crear
+        </button>
+        <button class="btn btn-primary d-block w-100">
+          <i class="bi bi-search"></i> Buscar
+        </button>
+      </div>
+    </div>
+  </form>
+  <!-- <div class="row mb-3">
+    <div class="col">
+      <label for="fecha" class="form-label">Fecha:</label>
+      <input type="date" id="fecha" class="form-control" />
+    </div>
+    <div class="col-auto">
+      <button class="btn btn-success d-block mb-2" type="button">
+        <i class="bi bi-plus"></i> Crear
+      </button>
+      <button class="btn btn-primary d-block" type="button">
+        <i class="bi bi-search"></i> Buscar
+      </button>
+    </div>
+  </div> -->
+
+  <hr />
+
+  <div class="row row-cols-3 g-3">
+    <div class="col" *ngFor="let itinerario of arrayItinerarios">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title">Placa: {{ itinerario.idBus }}</h5>
+          <p class="card-text">
+            Fecha Viaje: {{ itinerario.fechaViaje | date : "dd/MM/yyyy" }}
+          </p>
+          <p class="card-text">Chofer: {{ itinerario.idChofer }}</p>
+          <p class="card-text">Asientos: {{ itinerario.detalle.length }}</p>
+          <div class="d-flex flex-column align-items-center">
+            <button class="btn btn-primary mb-2">
+              <i class="bi bi-person-vcard-fill"></i> Asignar Chofer
+            </button>
+            <button class="btn btn-info">
+              <i class="bi bi-eye-fill"></i> Ver Asientos
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

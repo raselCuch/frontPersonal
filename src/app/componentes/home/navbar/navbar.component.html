@@ -1,0 +1,17 @@
+<!-- NavbarComponent -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <div class="container-fluid justify-content-between">
+    <a class="navbar-brand" [routerLink]="['/home']"><i class="bi bi-house"></i> Home</a>
+    <ul class="navbar-nav">
+      <li *ngIf="esAdministrador()" class="nav-item">
+        <a class="nav-link" [routerLink]="['/home/menuUsuario']"> Usuarios</a>
+      </li>
+      <li *ngIf="esAdministrador()" class="nav-item">
+        <a class="nav-link" [routerLink]="['/home/menuChoferes']">Empleados</a>
+      </li>
+      <li *ngIf="esAdministrador()" class="nav-item">
+        <a class="nav-link" [routerLink]="['/home/login']">Cerrar Session</a>
+      </li>
+    </ul>
+  </div>
+</nav>

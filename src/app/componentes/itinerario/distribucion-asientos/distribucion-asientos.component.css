@@ -1,0 +1,10 @@
+.icon {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 10px; /* Espacio entre el ícono y el botón */
+  }
+  
+  .icon i {
+    font-size: 2rem; /* Tamaño del ícono */
+  }
+  

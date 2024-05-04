@@ -1,0 +1,55 @@
+<!-- <p>Componente distribucion-asientos</p> -->
+<!-- <h5 class="mb-4">Distribución de Asientos</h5> -->
+<div class="container">
+  <h5 class="mb-4">Distribución de Asientos</h5>
+
+  <!-- Tu distribución de asientos -->
+  <div class="row text-center mt-3">
+    <div class="col">
+      <div class="card">
+        <span class="icon"><i class="bi bi-receipt bi-lg"></i></span>
+        <div class="card-body">
+          <button class="btn btn-block btn-asiento" [ngClass]="{ 'btn-danger': ocupado, 'btn-primary': !ocupado }"
+            [disabled]="ocupado">
+            Asiento 1
+          </button>
+        </div>
+      </div>
+    </div>
+    <div class="col">
+      <div class="card">
+        <span class="icon"><i class="bi bi-receipt bi-lg"></i></span>
+        <div class="card-body">
+          <button class="btn btn-block btn-asiento" [ngClass]="{ 'btn-danger': ocupado, 'btn-primary': !ocupado }"
+            [disabled]="ocupado">
+            Asiento 2
+          </button>
+        </div>
+      </div>
+    </div>
+    <div class="col"></div>
+    <!-- Espacio vacío -->
+    <div class="col">
+      <div class="card">
+        <span class="icon"><i class="bi bi-receipt bi-lg"></i></span>
+        <div class="card-body">
+          <button class="btn btn-block btn-asiento" [ngClass]="{ 'btn-danger': ocupado, 'btn-primary': !ocupado }"
+            [disabled]="ocupado">
+            Asiento 3
+          </button>
+        </div>
+      </div>
+    </div>
+    <div class="col">
+      <div class="card">
+        <span class="icon"><i class="bi bi-receipt bi-lg"></i></span>
+        <div class="card-body">
+          <button class="btn btn-block btn-asiento" [ngClass]="{ 'btn-danger': ocupado, 'btn-primary': !ocupado }"
+            [disabled]="ocupado">
+            Asiento 4
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

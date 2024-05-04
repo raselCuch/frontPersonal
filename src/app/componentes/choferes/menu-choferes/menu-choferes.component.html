@@ -1,0 +1,38 @@
+<!-- <p>Componente menu-choferes</p> -->
+
+<div class="container">
+  <h5>Lista de Empleados</h5>
+  <button class="btn btn-success mb-3 float-end" [routerLink]="['/registrarChoferes']">
+    <i class="bi bi-plus-circle" ></i> Agregar
+  </button>
+  <!-- <i class="bi bi-android2"></i> -->
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>DNI</th>
+        <th>Nombre</th>
+        <th>F. Ingreso</th>
+        <th>Opciones</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let arrayChoferes of arrayChoferes">
+        <td>{{ arrayChoferes.dni }}</td>
+        <td>{{ arrayChoferes.nombre }}</td>
+        <td>{{ arrayChoferes.fechaIngreso | date:"dd/MM/yyyy" }}</td>
+        <!-- <td>{{ arrayChoferes.fechaIngreso | date : "shortDate" }}</td> -->
+        <!-- <td>{{arrayChoferes.fechaIngreso | date:"short" }}</td> -->
+        <!-- <td>01/01/2023</td> -->
+        <td>
+          <button class="btn btn-primary" [routerLink]="['/registrarChoferes']">
+            <i class="bi bi-pencil"></i>
+          </button>
+          <button class="btn btn-danger">
+            <i class="bi bi-trash"></i>
+          </button>
+        </td>
+      </tr>
+      <!-- Aquí agregarías más filas con los datos de los usuarios -->
+    </tbody>
+  </table>
+</div>
