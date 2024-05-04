@@ -3,7 +3,7 @@
 <div class="container">
   <h5>Lista de Empleados</h5>
   <button class="btn btn-success mb-3 float-end" [routerLink]="['/registrarChoferes']">
-    <i class="bi bi-plus-circle" ></i> Agregar
+    <i class="bi bi-plus-circle"></i> Agregar
   </button>
   <!-- <i class="bi bi-android2"></i> -->
   <table class="table table-striped">
@@ -24,6 +24,9 @@
         <!-- <td>{{arrayChoferes.fechaIngreso | date:"short" }}</td> -->
         <!-- <td>01/01/2023</td> -->
         <td>
+          <button class="btn btn-warning">
+            <i class="bi bi-nut"></i>
+          </button>
           <button class="btn btn-primary" [routerLink]="['/registrarChoferes']">
             <i class="bi bi-pencil"></i>
           </button>
