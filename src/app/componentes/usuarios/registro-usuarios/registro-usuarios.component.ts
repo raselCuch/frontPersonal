@@ -48,10 +48,14 @@ export class RegistroUsuariosComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    console.log(this.formUsuarios);
+      console.log(this.formUsuarios);
+
   }
 
-  ejecutar() {}
+  ejecutar() {
+    console.log(this.formUsuarios );
+    
+  }
 
   limpiar() {}
 
