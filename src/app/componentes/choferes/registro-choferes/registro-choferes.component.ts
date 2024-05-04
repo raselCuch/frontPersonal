@@ -12,30 +12,34 @@ export class RegistroChoferesComponent implements OnInit {
 
   constructor() {
     this.formChoferes = this.builder.group({
-      DNI: ['', [Validators.required, Validators.pattern('^[0-9]{8}$')]],
-      Nombres: ['', [Validators.required]],
-      FechaIngreso: ['', [Validators.required]],
+      EmpDni: ['', [Validators.required, Validators.pattern('^[0-9]{8}$')]],
+      EmpNombre: ['', [Validators.required, Validators.pattern('^[a-zA-Z ]*$')]],
+      EmpApPaterno: ['', [Validators.required, Validators.pattern('^[a-zA-Z]*$')]],
+      EmpApMaterno: ['', [Validators.required, Validators.pattern('^[a-zA-Z]*$')]],
+      EmpGenero: ['', [Validators.required]],
+
+      EmpArea: ['', [Validators.required]],
+      EmpFechNacimiento: ['', [Validators.required]],
+      EmpFechIngreso: ['', [Validators.required]],
+
+      contrato: this.builder.group({
+        ContrModalidad: ['', [Validators.required]],
+        ContrFechInicio: ['', [Validators.required]],
+        ContrFechFin: ['', [Validators.required]],
+        ContrJornada: ['', [Validators.required]],
+        ContrSalario: ['', [Validators.required, Validators.min(0)]]
+      })
     });
   }
 
-  validaDNI() {
-    return (
-      this.formChoferes.get('DNI')?.valid ||
-      this.formChoferes.get('DNI')?.pristine
-    );
+  get form() {
+    return this.formChoferes.controls;
   }
 
-  validaNombres() {
+  validaCampo(campo: string) {
     return (
-      this.formChoferes.get('Nombres')?.valid ||
-      this.formChoferes.get('Nombres')?.pristine
-    );
-  }
-
-  validaFechaIngreso() {
-    return (
-      this.formChoferes.get('FechaIngreso')?.valid ||
-      this.formChoferes.get('FechaIngreso')?.pristine
+      this.form[campo].valid ||
+      this.form[campo].pristine
     );
   }
 
@@ -43,7 +47,10 @@ export class RegistroChoferesComponent implements OnInit {
     console.log(this.formChoferes);
   }
 
-  ejecutar() {}
+  ejecutar() {
+    console.log('ale ale ale');
+    
+  }
 
   limpiar() {}
 }

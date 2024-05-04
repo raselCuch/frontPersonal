@@ -1,27 +1,90 @@
-<!-- <p>Componente registro-choferes</p> -->
 <div class="container-fluid d-flex justify-content-center align-items-center" style="height: 100vh;">
-  <div class="card p-4" style="width: 400px;">
-    <h5 class="text-center">Registro Empleado</h5>
-    <form [formGroup]="formChoferes" (ngSubmit)="ejecutar()" (reset)="limpiar()">
-      <div class="form-group">
-        <label for="DNI">DNI:</label>
-        <input type="number" class="form-control" id="DNI" formControlName="DNI">
-        <span *ngIf="!validaDNI()" class="text-danger">(*)</span>
+  <div class="card p-4" style="width: 800px;">
+    <h5 class="text-center mb-4">Registro Empleado</h5>
+    <form [formGroup]="formChoferes" (ngSubmit)="ejecutar()" (reset)="limpiar()" class="row">
+
+      <div class="col-md-6">
+        <h5 class="text-center">Datos Empleado</h5>
+        <div class="form-group">
+          <label for="DNI">DNI:</label>
+          <input type="number" class="form-control" id="DNI" formControlName="EmpDni">
+          <span *ngIf="!validaCampo('EmpDni')" class="text-danger">(*) Solo 8 números</span>
+        </div>
+
+        <div class="form-group">
+          <label for="Nombres">Nombres:</label>
+          <input type="text" class="form-control" id="Nombres" formControlName="EmpNombre">
+          <span *ngIf="!validaCampo('EmpNombre')" class="text-danger">(*) Ingrese nombre válido</span>
+        </div>
+
+        <div class="form-group">
+          <label for="Nombres">A. Paterno:</label>
+          <input type="text" class="form-control" id="Nombres" formControlName="EmpApPaterno">
+          <span *ngIf="!validaCampo('EmpApPaterno')" class="text-danger">(*) Ingrese Apellido válido</span>
+        </div>
+
+        <div class="form-group">
+          <label for="Nombres">A. Materno:</label>
+          <input type="text" class="form-control" id="Nombres" formControlName="EmpApMaterno">
+          <span *ngIf="!validaCampo('EmpApMaterno')" class="text-danger">(*) Ingrese Apellido válido</span>
+        </div>
+
+        <div class="form-group">
+          <label for="Rol">Género:</label>
+          <select class="form-select" id="Rol" formControlName="EmpGenero">
+            <option value="" disabled selected>Seleccionar Género</option>
+            <option value="Masculino">Masculino</option>
+            <option value="Femenino">Femenino</option>
+          </select>
+          <span *ngIf="!validaCampo('EmpGenero')" class="text-danger">(*)</span>
+        </div>
+
+        <div class="form-group">
+          <label for="Rol">Área:</label>
+          <select class="form-select" id="Rol" formControlName="EmpArea">
+            <option value="" disabled selected>Seleccionar Área</option>
+            <option value="Producción">Producción</option>
+            <option value="Ventas">Ventas</option>
+            <option value="RR. HH.">RR. HH.</option>
+            <option value="TI">TI</option>
+            <option value="Servicio al cliente">Servicio al cliente</option>
+          </select>
+          <span *ngIf="!validaCampo('EmpArea')" class="text-danger">(*)</span>
+        </div>
+
+        <div class="form-group">
+          <label for="fechaNacimiento">Fecha de nacimiento:</label>
+          <input type="date" class="form-control" id="fechaNacimiento" formControlName="EmpFechNacimiento" />
+          <span *ngIf="!validaCampo('EmpFechNacimiento')" class="text-danger">(*)</span>
+        </div>
+
+        <div class="form-group">
+          <label for="fechaIngreso">Fecha de ingreso:</label>
+          <input type="date" class="form-control" id="fechaIngreso" formControlName="EmpFechIngreso" />
+          <span *ngIf="!validaCampo('EmpFechIngreso')" class="text-danger">(*)</span>
+        </div>
+
       </div>
-      <div class="form-group">
-        <label for="Nombres">Nombres:</label>
-        <input type="text" class="form-control" id="Nombres" formControlName="Nombres">
-        <span *ngIf="!validaNombres()" class="text-danger">(*)</span>
+
+      <div class="col-md-6">
+        <h5 class="text-center">Datos de Contrato</h5>
+        <div class="form-group">
+          <label for="Rol">Modalidad de contrato:</label>
+          <select class="form-select" id="Rol" formControlName="EmpFechIngreso">
+            <option value="" disabled selected>Seleccionar contrato</option>
+            <option value="Jornada Parcial">Jornada Parcial</option>
+            <option value="Jornada Estándar">Jornada Estándar</option>
+            <option value="Jornada Extendida">Jornada Extendida</option>
+          </select>
+          <span *ngIf="!validaCampo('EmpFechIngreso')" class="text-danger">(*)</span>
+        </div>
       </div>
-      <div class="form-group">
-        <label for="FechaIngreso">Fecha Ingreso:</label>
-        <input type="date" class="form-control" id="FechaIngreso" formControlName="FechaIngreso">
-        <span *ngIf="!validaFechaIngreso()" class="text-danger">(*)</span>
-      </div>
-      <div class="text-center">
+
+      <div class="text-center col-12 mt-4">
         <button type="submit" class="btn btn-primary" [disabled]="!formChoferes.valid">Guardar</button>
         <button type="reset" class="btn btn-secondary">Cancelar</button>
       </div>
+
     </form>
   </div>
 </div>

@@ -16,5 +16,6 @@ export interface IEmpleado {
   EmpArea: string;
   EmpFechNacimiento: Date;
   EmpFechIngreso: Date;
+  
   contrato: IContrato;
 }
