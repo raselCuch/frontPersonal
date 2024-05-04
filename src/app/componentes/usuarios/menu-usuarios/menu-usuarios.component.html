@@ -1,25 +1,25 @@
 <!-- Componente menu-usuarios -->
 <div class="container">
   <h5>Lista de Usuarios</h5>
-  <button class="btn btn-success mb-3 float-end"  [routerLink]="['/registrarUsuarios']">
+  <button class="btn btn-success mb-3 float-end" [routerLink]="['/registrarUsuarios']">
     <i class="bi bi-plus-circle"></i> Agregar
   </button>
   <table class="table table-striped">
     <thead>
       <tr>
-        <th>DNI</th>
         <th>Nombres</th>
-        <th>Usuario</th>
+        <th>Correo</th>
+        <th>Contraseña</th>
         <th>Rol</th>
-        <th>Editar</th>
+        <th>Opcion</th>
       </tr>
     </thead>
     <tbody>
       <tr *ngFor="let arrayUsuarios of arrayUsuarios">
-        <td>{{ arrayUsuarios.DNI }}</td>
-        <td>{{ arrayUsuarios.nombre }}</td>
-        <td>{{ arrayUsuarios.username }}</td>
-        <td>{{ obtenerRol(arrayUsuarios.rol) }}</td>
+        <td>{{ arrayUsuarios.UsuNombreUsuario }}</td>
+        <td>{{ arrayUsuarios.UsuCorreo }}</td>
+        <td>{{ arrayUsuarios.UsuContrasena }}</td>
+        <td>{{ obtenerRol(arrayUsuarios.UsuRol) }}</td>
         <td>
           <button class="btn btn-danger">
             <i class="bi bi-trash"></i>

@@ -7,7 +7,6 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { CommonModule, DatePipe } from '@angular/common';
 
-
 import { LoginComponent } from './componentes/auth/login/login.component';
 import { RegistroUsuariosComponent } from './componentes/usuarios/registro-usuarios/registro-usuarios.component';
 import { RegistroChoferesComponent } from './componentes/choferes/registro-choferes/registro-choferes.component';
@@ -34,7 +33,7 @@ import { BienvenidaComponent } from './componentes/home/bienvenida/bienvenida.co
     AppRoutingModule,
     ReactiveFormsModule,
     HttpClientModule,
-    CommonModule
+    CommonModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

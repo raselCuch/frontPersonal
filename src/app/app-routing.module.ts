@@ -3,7 +3,6 @@ import { RouterModule, Routes } from '@angular/router';
 import { LoginComponent } from './componentes/auth/login/login.component';
 import { RegistroUsuariosComponent } from './componentes/usuarios/registro-usuarios/registro-usuarios.component';
 import { RegistroChoferesComponent } from './componentes/choferes/registro-choferes/registro-choferes.component';
-import { NavbarComponent } from './componentes/home/navbar/navbar.component';
 import { MenuUsuariosComponent } from './componentes/usuarios/menu-usuarios/menu-usuarios.component';
 import { MenuChoferesComponent } from './componentes/choferes/menu-choferes/menu-choferes.component';
 import { HomeComponent } from './componentes/home/home/home.component';
@@ -22,7 +21,6 @@ const routes: Routes = [
       { path: 'menuChoferes', component: MenuChoferesComponent },
     ],
   },
-  // { path: '**', redirectTo: 'registrarChoferes' },
   { path: '**', redirectTo: 'login' },
 ];
 

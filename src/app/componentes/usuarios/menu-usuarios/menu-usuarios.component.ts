@@ -9,40 +9,31 @@ import { IUsuario } from '../../interfaces/usuario.interface';
 export class MenuUsuariosComponent {
   arrayUsuarios: IUsuario[] = [
     {
-      DNI: '45896588',
-      nombre: 'Juan Pérez',
-      correo: 'juanperez@example.com',
-      username: 'juanperez123',
-      password: '********',
-      rol: 1 // Por ejemplo, 1 podría representar el rol de administrador
+      UsuNombreUsuario: 'Juan Pérez',
+      UsuCorreo: 'juanperez@example.com',
+      UsuContrasena: '1234',
+      UsuRol: 1 // Por ejemplo, 1 podría representar el rol de administrador
     },
     {
-      DNI: '45822256',
-      nombre: 'María Rodríguez',
-      correo: 'mariarodriguez@example.com',
-      username: 'mariarodriguez456',
-      password: '********',
-      rol: 2 // Por ejemplo, 2 podría representar el rol de usuario estándar
-    },
-    // Agrega más usuarios según sea necesario
-    {
-      DNI: '12345678',
-      nombre: 'Carlos González',
-      correo: 'carlosgonzalez@example.com',
-      username: 'carlosgonzalez789',
-      password: '********',
-      rol: 1 // Por ejemplo, 1 podría representar el rol de administrador
+      UsuNombreUsuario: 'María García',
+      UsuCorreo: 'mariagarcia@example.com',
+      UsuContrasena: '4355',
+      UsuRol: 2 // Por ejemplo, 2 podría representar el rol de usuario estándar
     },
     {
-      DNI: '78901234',
-      nombre: 'Ana Silva',
-      correo: 'anasilva@example.com',
-      username: 'anasilva567',
-      password: '********',
-      rol: 2 // Por ejemplo, 2 podría representar el rol de usuario estándar
+      UsuNombreUsuario: 'Pedro Rodríguez',
+      UsuCorreo: 'pedrorodriguez@example.com',
+      UsuContrasena: '4432*',
+      UsuRol: 1 // Por ejemplo, 1 podría representar el rol de administrador
     },
-    // Agrega más usuarios según sea necesario
+    {
+      UsuNombreUsuario: 'Ana Martínez',
+      UsuCorreo: 'anamartinez@example.com',
+      UsuContrasena: '2323',
+      UsuRol: 2 // Por ejemplo, 2 podría representar el rol de usuario estándar
+    },
   ];
+  
 
 
   obtenerRol(rol: number): string {

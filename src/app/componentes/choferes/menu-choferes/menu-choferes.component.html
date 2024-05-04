@@ -10,19 +10,18 @@
     <thead>
       <tr>
         <th>DNI</th>
-        <th>Nombre</th>
+        <th>Nombre completo</th>
+        <th>Salario</th>
         <th>F. Ingreso</th>
         <th>Opciones</th>
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let arrayChoferes of arrayChoferes">
-        <td>{{ arrayChoferes.dni }}</td>
-        <td>{{ arrayChoferes.nombre }}</td>
-        <td>{{ arrayChoferes.fechaIngreso | date:"dd/MM/yyyy" }}</td>
-        <!-- <td>{{ arrayChoferes.fechaIngreso | date : "shortDate" }}</td> -->
-        <!-- <td>{{arrayChoferes.fechaIngreso | date:"short" }}</td> -->
-        <!-- <td>01/01/2023</td> -->
+      <tr *ngFor="let arrayEmpleados of arrayEmpleados">
+        <td>{{ arrayEmpleados.EmpDni }}</td>
+        <td>{{ arrayEmpleados.EmpNombre}}, {{arrayEmpleados.EmpApPaterno}} {{arrayEmpleados.EmpApMaterno}}</td>
+        <td>S/. {{ arrayEmpleados.contrato.ContrSalario }}</td>
+        <td>{{ arrayEmpleados.EmpFechIngreso | date:"dd/MM/yyyy" }}</td>
         <td>
           <button class="btn btn-warning">
             <i class="bi bi-nut"></i>

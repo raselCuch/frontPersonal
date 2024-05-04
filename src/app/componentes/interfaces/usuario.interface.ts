@@ -1,8 +1,6 @@
 export interface IUsuario {
-  DNI: string;
-  nombre: string;
-  correo: string;
-  username: string;
-  password: string;
-  rol: number; //alerta
+  UsuNombreUsuario: string;
+  UsuCorreo: string;
+  UsuContrasena: string;
+  UsuRol: number; //alerta
 }
