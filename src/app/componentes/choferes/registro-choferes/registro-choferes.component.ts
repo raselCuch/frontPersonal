@@ -1,8 +1,9 @@
 import { Component, OnInit, inject } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { IEmpleado } from '../../interfaces/empleado.interface';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { EmpleadoService } from '../../services/empleado.service';
+import { of, switchMap } from 'rxjs';
 
 @Component({
   selector: 'app-registro-choferes',
@@ -11,11 +12,29 @@ import { EmpleadoService } from '../../services/empleado.service';
 })
 export class RegistroChoferesComponent implements OnInit {
   formChoferes!: FormGroup;
+  currentEmployee!:IEmpleado;
   builder = inject(FormBuilder);
-
+ngOnInit(): void {
+  console.log(this.formChoferes);
+  
+  this.currentRouter.queryParams.pipe(
+    switchMap(params => {
+      const id = params['id'];
+      const mode = params['mode'];
+      if(!mode) return of(null);
+      return this._empleadoService.getEmpleadoById(id);
+    })
+  ).subscribe(data => {
+    if(data){
+    this.setForm(data);
+  }
+    // Haz lo que necesites con los datos del empleado
+  });
+}
   constructor(
     private router: Router,
-    private _empleadoService: EmpleadoService
+    private _empleadoService: EmpleadoService,
+    private currentRouter: ActivatedRoute
   ) {
     this.formChoferes = this.builder.group({
       EmpDni: ['', [Validators.required, Validators.pattern('^[0-9]{8}$')]],
@@ -43,7 +62,27 @@ export class RegistroChoferesComponent implements OnInit {
       ContrSalario: ['', [Validators.required, Validators.min(0)]],
     });
   }
+  setForm(data:IEmpleado){
+    this.formChoferes.patchValue({
+      EmpDni:data.EmpDni,
+      EmpNombre:data.EmpNombre,
+      EmpApPaterno:data.EmpApPaterno,
+      EmpApMaterno:data.EmpApMaterno,
+      EmpGenero:data.EmpGenero,
+      EmpArea:data.EmpArea,
+      EmpFechNacimiento:this.formatDate(new Date(data.EmpFechNacimiento)),
+      EmpFechIngreso:this.formatDate(new Date(data.EmpFechIngreso)),
+      ContrModalidad:data.contrato.ContrModalidad,
+      ContrFechInicio:this.formatDate(new Date(data.contrato.ContrFechInicio)),
+      ContrFechFin:this.formatDate(new Date(data.contrato.ContrFechFin)),
+      ContrJornada:data.contrato.ContrJornada,
+      ContrSalario:data.contrato.ContrSalario
 
+    })
+  }
+  formatDate(fecha:Date){//formato: "1993-12-05"
+    return fecha.getFullYear() + '-' + ('0' + (fecha.getMonth() + 1)).slice(-2) + '-' + ('0' + fecha.getDate()).slice(-2);
+  }
   validaDni() {
     return (
       this.formChoferes.get('EmpDni')?.valid ||
@@ -135,9 +174,7 @@ export class RegistroChoferesComponent implements OnInit {
     );
   }
 
-  ngOnInit(): void {
-    console.log(this.formChoferes);
-  }
+ 
 
   convertFormDataToEmpleado(formChoferes: any): IEmpleado {
     const empleado: IEmpleado = {

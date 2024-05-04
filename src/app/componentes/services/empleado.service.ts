@@ -22,4 +22,7 @@ export class EmpleadoService {
   guardarEmpleado(empleado: IEmpleado): Observable<any> {
     return this.http.post(this.url, empleado);
   }
+  getEmpleadoById(id:number):Observable<IEmpleado>{
+    return this.http.get<IEmpleado>(this.url+id);
+  }
 }
