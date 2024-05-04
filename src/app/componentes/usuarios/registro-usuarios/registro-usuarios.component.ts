@@ -1,5 +1,8 @@
 import { Component, OnInit, inject } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
+
+import { UsuarioService } from '../../services/usuario.service';
 
 @Component({
   selector: 'app-registro-usuarios',
@@ -10,9 +13,12 @@ export class RegistroUsuariosComponent implements OnInit {
   formUsuarios!: FormGroup;
   builder = inject(FormBuilder);
 
-  constructor() {
+  constructor(private router: Router, private _productoService: UsuarioService) {
     this.formUsuarios = this.builder.group({
-      UsuNombreUsuario: ['', [Validators.required, Validators.pattern('^[a-zA-Z ]*$')]],
+      UsuNombreUsuario: [
+        '',
+        [Validators.required, Validators.pattern('^[a-zA-Z ]*$')],
+      ],
       UsuCorreo: ['', [Validators.required, Validators.email]],
       UsuContrasena: ['', [Validators.required, Validators.minLength(4)]],
       UsuRol: ['Usuario', [Validators.required]],
@@ -48,16 +54,18 @@ export class RegistroUsuariosComponent implements OnInit {
   }
 
   ngOnInit(): void {
-      console.log(this.formUsuarios);
-
+    console.log(this.formUsuarios);
   }
 
   ejecutar() {
-    console.log(this.formUsuarios );
-    
+    const usuario = this.formUsuarios.value; //captura datos
+
+    this._productoService.guardarUsuario(usuario).subscribe((data) => {
+      this.router.navigate(['/home/menuUsuario']);
+    });
+
+    console.log(this.formUsuarios);
   }
 
   limpiar() {}
-
-
 }

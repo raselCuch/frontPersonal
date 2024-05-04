@@ -156,6 +156,7 @@ export class RegistroChoferesComponent implements OnInit {
     };
     return empleado;
   }
+
   ejecutar() {
     const empleado: IEmpleado = this.convertFormDataToEmpleado(
       this.formChoferes.value

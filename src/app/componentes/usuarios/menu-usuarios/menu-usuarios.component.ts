@@ -1,43 +1,56 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { IUsuario } from '../../interfaces/usuario.interface';
+import { UsuarioService } from '../../services/usuario.service';
 
 @Component({
   selector: 'app-menu-usuarios',
   templateUrl: './menu-usuarios.component.html',
-  styleUrls: ['./menu-usuarios.component.css']
+  styleUrls: ['./menu-usuarios.component.css'],
 })
-export class MenuUsuariosComponent {
-  arrayUsuarios: IUsuario[] = [
-    {
-      UsuNombreUsuario: 'Juan Pérez',
-      UsuCorreo: 'juanperez@example.com',
-      UsuContrasena: '1234',
-      UsuRol: 1 // Por ejemplo, 1 podría representar el rol de administrador
-    },
-    {
-      UsuNombreUsuario: 'María García',
-      UsuCorreo: 'mariagarcia@example.com',
-      UsuContrasena: '4355',
-      UsuRol: 2 // Por ejemplo, 2 podría representar el rol de usuario estándar
-    },
-    {
-      UsuNombreUsuario: 'Pedro Rodríguez',
-      UsuCorreo: 'pedrorodriguez@example.com',
-      UsuContrasena: '4432*',
-      UsuRol: 1 // Por ejemplo, 1 podría representar el rol de administrador
-    },
-    {
-      UsuNombreUsuario: 'Ana Martínez',
-      UsuCorreo: 'anamartinez@example.com',
-      UsuContrasena: '2323',
-      UsuRol: 2 // Por ejemplo, 2 podría representar el rol de usuario estándar
-    },
-  ];
-  
+export class MenuUsuariosComponent implements OnInit {
+  arrayUsuarios: IUsuario[] = [];
 
+  constructor(private _usuarioService: UsuarioService) {}
 
   obtenerRol(rol: number): string {
     // Puedes implementar la lógica para obtener el Rol según tus necesidades
-    return (rol === 1) ? 'Admin' : 'Usuario Estándar';
+    return rol === 1 ? 'Admin' : 'Usuario Estándar';
+  }
+
+  ngOnInit(): void {
+    this.obtenerProductos();
+  }
+
+  obtenerProductos() {
+    this._usuarioService.getUsuarios().subscribe(
+      (data) => {
+        console.log(data);
+        this.arrayUsuarios = data;
+      },
+      (error) => {
+        console.log(error);
+      }
+    );
+  }
+
+  confirmarEliminarProducto(id: any) {
+    // Mostrar el cuadro de diálogo de confirmación
+    const confirmarEliminar = window.confirm('¿Estás seguro de que deseas eliminar este producto?');
+    
+    if (confirmarEliminar) {
+      // Llamar al método para eliminar el producto
+      this.eliminarProducto(id);
+    }
+  }
+
+  eliminarProducto(id: any) {
+    this._usuarioService.eliminarUsuario(id).subscribe(
+      (data) => {
+        this.obtenerProductos();
+      },
+      (error) => {
+        console.log(error);
+      }
+    );
   }
 }
