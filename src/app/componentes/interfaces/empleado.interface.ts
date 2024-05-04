@@ -7,7 +7,7 @@ export interface IContrato {
 }
 
 export interface IEmpleado {
-  _id: string;
+  _id?: string;
   EmpDni: string;
   EmpNombre: string;
   EmpApPaterno: string;

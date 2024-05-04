@@ -1,6 +1,8 @@
 import { Component, OnInit, inject } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { IEmpleado } from '../../interfaces/empleado.interface';
+import { Router } from '@angular/router';
+import { EmpleadoService } from '../../services/empleado.service';
 
 @Component({
   selector: 'app-registro-choferes',
@@ -11,7 +13,7 @@ export class RegistroChoferesComponent implements OnInit {
   formChoferes!: FormGroup;
   builder = inject(FormBuilder);
 
-  constructor() {
+  constructor(private router: Router, private _empleadoService: EmpleadoService) {
     this.formChoferes = this.builder.group({
       EmpDni: ['', [Validators.required, Validators.pattern('^[0-9]{8}$')]],
       EmpNombre: [
@@ -136,7 +138,6 @@ export class RegistroChoferesComponent implements OnInit {
 
   convertFormDataToEmpleado(formChoferes: any): IEmpleado {
     const empleado: IEmpleado = {
-      _id: '', // Puedes generar un id aquí si es necesario
       EmpDni: formChoferes.EmpDni,
       EmpNombre: formChoferes.EmpNombre,
       EmpApPaterno: formChoferes.EmpApPaterno,
@@ -161,6 +162,10 @@ export class RegistroChoferesComponent implements OnInit {
     const empleado: IEmpleado = this.convertFormDataToEmpleado(
       this.formChoferes.value
     );
+    
+    this._empleadoService.guardarEmpleado(empleado).subscribe((data) => {
+      this.router.navigate(['/home/menuChoferes']);
+    });
     console.log(empleado);
   }
 

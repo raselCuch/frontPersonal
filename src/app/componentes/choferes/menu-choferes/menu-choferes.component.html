@@ -23,14 +23,14 @@
         <td>S/. {{ arrayEmpleados.contrato.ContrSalario }}</td>
         <td>{{ arrayEmpleados.EmpFechIngreso | date:"dd/MM/yyyy" }}</td>
         <td>
-          <button class="btn btn-warning">
+          <button class="btn btn-warning" [routerLink]="['/registrarChoferes']">
             <i class="bi bi-nut"></i>
           </button>
           <button class="btn btn-primary" [routerLink]="['/registrarChoferes']">
             <i class="bi bi-pencil"></i>
           </button>
           <button class="btn btn-danger">
-            <i class="bi bi-trash"></i>
+            <i (click)="confirmarEliminarEmpleado(arrayEmpleados._id)" class="bi bi-trash"></i>
           </button>
         </td>
       </tr>
