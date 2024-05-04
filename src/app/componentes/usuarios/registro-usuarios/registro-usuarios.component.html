@@ -1,83 +1,31 @@
-<!-- <p>formUsuarios works!</p> -->
-<!-- <div class="container-fluid d-flex justify-content-center align-items-center" style="height: 100vh;">
-    <form [formGroup]="formUsuarios" (ngSubmit)="ejecutar()" (reset)="limpiar()" class="card p-4">
-      <p class="text-center">formUsuarios works!</p>
+<div class="container-fluid d-flex justify-content-center align-items-center" style="height: 100vh;">
+  <div class="card p-4" style="width: 400px;">
+    <h5 class="text-center">Registro de usuarios</h5>
+
+    <form [formGroup]="formUsuarios" (ngSubmit)="ejecutar()" (reset)="limpiar()">
       <div class="form-group">
-        <label for="DNI">DNI:</label>
-        <input type="text" class="form-control" id="DNI" formControlName="DNI">
-        <span *ngIf="!validaDNI()" class="text-danger">(*)</span>
+        <label for="Nombres">Nombre:</label>
+        <input type="text" class="form-control" id="Nombres" formControlName="UsuNombreUsuario">
+        <span *ngIf="!validaNombres()" class="text-danger">(*)Ingrese nombre valido</span>
       </div>
       <div class="form-group">
-        <label for="Nombres">Nombres:</label>
-        <input type="text" class="form-control" id="Nombres" formControlName="Nombres">
-        <span *ngIf="!validaNombres()" class="text-danger">(*)</span>
-      </div>
-      <div class="form-group">
-        <label for="Usuario">Usuario:</label>
-        <input type="text" class="form-control" id="Usuario" formControlName="Usuario">
-        <span *ngIf="!validaUsuario()" class="text-danger">(*)</span>
+        <label for="Usuario">Correo:</label>
+        <input type="text" class="form-control" id="Usuario" formControlName="UsuCorreo">
+        <span *ngIf="!validaCorreo()" class="text-danger">(*) Tiene que ser correo</span>
       </div>
       <div class="form-group">
         <label for="Contrasena">Contraseña:</label>
-        <input type="password" class="form-control" id="Contrasena" formControlName="Contrasena">
-        <span *ngIf="!validaContrasena()" class="text-danger">(*)</span>
+        <input type="password" class="form-control" id="Contrasena" formControlName="UsuContrasena">
+        <span *ngIf="!validaContrasena()" class="text-danger">(*) Minimo 4 caracteres</span>
       </div>
       <div class="form-group">
         <label for="Rol">Rol:</label>
-        <select class="form-control" id="Rol" formControlName="Rol">
-          <option value="" disabled selected>Seleccionar Rol</option>
-          <option value="admin">Administrador</option>
-          <option value="usuario">Usuario</option>
-        </select>
-        <span *ngIf="!validaRol()" class="text-danger">(*)</span>
+        <input type="text" class="form-control" id="Contrasena" formControlName="UsuRol" value="Usuario" readonly>
       </div>
-      <div class="text-center">
+      <div class="text-center mt-3">
         <button type="submit" class="btn btn-primary" [disabled]="!formUsuarios.valid">Guardar</button>
         <button type="reset" class="btn btn-secondary">Cancelar</button>
       </div>
     </form>
   </div>
-   -->
-
-   <div class="container-fluid d-flex justify-content-center align-items-center" style="height: 100vh;">
-    <div class="card p-4" style="width: 400px;">
-      <h5 class="text-center">Registro de usuarios</h5>
-      
-      <form [formGroup]="formUsuarios" (ngSubmit)="ejecutar()" (reset)="limpiar()">
-        <div class="form-group">
-          <label for="DNI">DNI:</label>
-          <input type="number" class="form-control" id="DNI" formControlName="DNI"> <!-- number -->
-          <span *ngIf="!validaDNI()" class="text-danger">(*) Ingrese DNI correcto</span>
-        </div>
-        <div class="form-group">
-          <label for="Nombres">Nombres:</label>
-          <input type="text" class="form-control" id="Nombres" formControlName="Nombres">
-          <span *ngIf="!validaNombres()" class="text-danger">(*)</span>
-        </div>
-        <div class="form-group">
-          <label for="Usuario">Usuario:</label>
-          <input type="text" class="form-control" id="Usuario" formControlName="Usuario">
-          <span *ngIf="!validaUsuario()" class="text-danger">(*)</span>
-        </div>
-        <div class="form-group">
-          <label for="Contrasena">Contraseña:</label>
-          <input type="password" class="form-control" id="Contrasena" formControlName="Contrasena">
-          <span *ngIf="!validaContrasena()" class="text-danger">(*) Minimo 4 caracteres</span>
-        </div>
-        <div class="form-group">
-          <label for="Rol">Rol:</label>
-          <select class="form-select" id="Rol" formControlName="Rol">
-            <option value="" disabled selected>Seleccionar Rol</option>
-            <option value="admin">Administrador</option>
-            <option value="usuario">Usuario</option>
-          </select>
-          <span *ngIf="!validaRol()" class="text-danger">(*)</span>
-        </div>
-        <div class="text-center mt-3">
-          <button type="submit" class="btn btn-primary" [disabled]="!formUsuarios.valid">Guardar</button>
-          <button type="reset" class="btn btn-secondary">Cancelar</button>
-        </div>
-      </form>
-    </div>
-  </div>
-  
+</div>

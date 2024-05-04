@@ -21,9 +21,10 @@
         <td>{{ arrayUsuarios.UsuContrasena }}</td>
         <td>{{ obtenerRol(arrayUsuarios.UsuRol) }}</td>
         <td>
-          <button class="btn btn-danger">
-            <i class="bi bi-trash"></i>
-          </button>
+          <div *ngIf="arrayUsuarios.UsuRol !==1">
+            <button class="btn btn-danger">
+              <i class="bi bi-trash"></i>
+            </button> </div>
         </td>
       </tr>
       <!-- Aquí agregarías más filas con los datos de los usuarios -->

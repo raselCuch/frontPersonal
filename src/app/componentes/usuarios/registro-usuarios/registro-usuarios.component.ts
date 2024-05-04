@@ -12,46 +12,38 @@ export class RegistroUsuariosComponent implements OnInit {
 
   constructor() {
     this.formUsuarios = this.builder.group({
-      DNI: ['', [Validators.required , Validators.pattern('^[0-9]{8}$')]],
-      Nombres: ['', [Validators.required]],
-      Usuario: ['', [Validators.required]],
-      Contrasena: ['', [Validators.required, Validators.minLength(4)]],
-      Rol: ['', [Validators.required]],
+      UsuNombreUsuario: ['', [Validators.required, Validators.pattern('^[a-zA-Z ]*$')]],
+      UsuCorreo: ['', [Validators.required, Validators.email]],
+      UsuContrasena: ['', [Validators.required, Validators.minLength(4)]],
+      UsuRol: ['Usuario', [Validators.required]],
     });
-  }
-
-  validaDNI() {
-    return (
-      this.formUsuarios.get('DNI')?.valid ||
-      this.formUsuarios.get('DNI')?.pristine
-    );
   }
 
   validaNombres() {
     return (
-      this.formUsuarios.get('Nombres')?.valid ||
-      this.formUsuarios.get('Nombres')?.pristine
+      this.formUsuarios.get('UsuNombreUsuario')?.valid ||
+      this.formUsuarios.get('UsuNombreUsuario')?.pristine
     );
   }
 
-  validaUsuario() {
+  validaCorreo() {
     return (
-      this.formUsuarios.get('Usuario')?.valid ||
-      this.formUsuarios.get('Usuario')?.pristine
+      this.formUsuarios.get('UsuCorreo')?.valid ||
+      this.formUsuarios.get('UsuCorreo')?.pristine
     );
   }
 
   validaContrasena() {
     return (
-      this.formUsuarios.get('Contrasena')?.valid ||
-      this.formUsuarios.get('Contrasena')?.pristine
+      this.formUsuarios.get('UsuContrasena')?.valid ||
+      this.formUsuarios.get('UsuContrasena')?.pristine
     );
   }
 
   validaRol() {
     return (
-      this.formUsuarios.get('Rol')?.valid ||
-      this.formUsuarios.get('Rol')?.pristine
+      this.formUsuarios.get('UsuRol')?.valid ||
+      this.formUsuarios.get('UsuRol')?.pristine
     );
   }
 
