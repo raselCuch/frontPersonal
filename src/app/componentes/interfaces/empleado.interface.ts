@@ -6,7 +6,7 @@ export interface IContrato {
   ContrSalario: number;
 }
 
-export interface IEmpleados {
+export interface IEmpleado {
   _id: string;
   EmpDni: string;
   EmpNombre: string;

@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IEmpleados } from '../../interfaces/chofer.interface';
+import { IEmpleado } from '../../interfaces/empleado.interface';
 import { DatePipe } from '@angular/common';
 
 @Component({
@@ -8,7 +8,7 @@ import { DatePipe } from '@angular/common';
   styleUrls: ['./menu-choferes.component.css'],
 })
 export class MenuChoferesComponent {
-  arrayEmpleados: IEmpleados[] = [
+  arrayEmpleados: IEmpleado[] = [
     {
       _id: '1',
       EmpDni: '12345678',
