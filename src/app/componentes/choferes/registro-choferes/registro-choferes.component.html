@@ -9,25 +9,25 @@
         <div class="form-group">
           <label for="DNI">DNI:</label>
           <input type="number" class="form-control" id="DNI" formControlName="EmpDni">
-          <span *ngIf="!validaCampo('EmpDni')" class="text-danger">(*) Solo 8 números</span>
+          <span *ngIf="!validaDni()" class="text-danger">(*) Solo 8 números</span>
         </div>
 
         <div class="form-group">
           <label for="Nombres">Nombres:</label>
           <input type="text" class="form-control" id="Nombres" formControlName="EmpNombre">
-          <span *ngIf="!validaCampo('EmpNombre')" class="text-danger">(*) Ingrese nombre válido</span>
+          <span *ngIf="!validaNombre()" class="text-danger">(*) Ingrese nombre válido</span>
         </div>
 
         <div class="form-group">
           <label for="Nombres">A. Paterno:</label>
           <input type="text" class="form-control" id="apatern" formControlName="EmpApPaterno">
-          <span *ngIf="!validaCampo('EmpApPaterno')" class="text-danger">(*) Ingrese Apellido válido</span>
+          <span *ngIf="!validaApPaterno()" class="text-danger">(*) Ingrese Apellido válido</span>
         </div>
 
         <div class="form-group">
           <label for="Nombres">A. Materno:</label>
           <input type="text" class="form-control" id="amatern" formControlName="EmpApMaterno">
-          <span *ngIf="!validaCampo('EmpApMaterno')" class="text-danger">(*) Ingrese Apellido válido</span>
+          <span *ngIf="!validaApMaterno()" class="text-danger">(*) Ingrese Apellido válido</span>
         </div>
 
         <div class="form-group">
@@ -37,7 +37,7 @@
             <option value="Masculino">Masculino</option>
             <option value="Femenino">Femenino</option>
           </select>
-          <span *ngIf="!validaCampo('EmpGenero')" class="text-danger">(*)</span>
+          <span *ngIf="!validaGenero()" class="text-danger">(*)</span>
         </div>
 
         <div class="form-group">
@@ -50,19 +50,19 @@
             <option value="TI">TI</option>
             <option value="Servicio al cliente">Servicio al cliente</option>
           </select>
-          <span *ngIf="!validaCampo('EmpArea')" class="text-danger">(*)</span>
+          <span *ngIf="!validaArea()" class="text-danger">(*)</span>
         </div>
 
         <div class="form-group">
           <label for="fechaNacimiento">Fecha de nacimiento:</label>
           <input type="date" class="form-control" id="fechaNacimiento" formControlName="EmpFechNacimiento" />
-          <span *ngIf="!validaCampo('EmpFechNacimiento')" class="text-danger">(*)</span>
+          <span *ngIf="!validaFechaNacimiento()" class="text-danger">(*)</span>
         </div>
 
         <div class="form-group">
           <label for="fechaIngreso">Fecha de ingreso:</label>
           <input type="date" class="form-control" id="fechaIngreso" formControlName="EmpFechIngreso" />
-          <span *ngIf="!validaCampo('EmpFechIngreso')" class="text-danger">(*)</span>
+          <span *ngIf="!validaFechaIngreso()" class="text-danger">(*)</span>
         </div>
 
       </div>
@@ -78,19 +78,19 @@
             <option value="Contrato eventual por circunstancias">Contrato eventual por circunstancias</option>
             <option value="Contrato de formación">Contrato de formación y aprendizaje</option>
           </select>
-          <span *ngIf="!validaCampo('ContrModalidad')" class="text-danger">(*)</span>
+          <span *ngIf="!validaModalidad()" class="text-danger">(*)</span>
         </div>
 
         <div class="form-group">
           <label for="fechaNacimiento">Fecha de Inicio:</label>
           <input type="date" class="form-control" id="fechaInicio" formControlName="ContrFechInicio" />
-          <span *ngIf="!validaCampo('ContrFechInicio')" class="text-danger">(*)</span>
+          <span *ngIf="!validaFechaInicio()" class="text-danger">(*)</span>
         </div>
 
         <div class="form-group">
           <label for="fechaNacimiento">Fecha de Fin:</label>
           <input type="date" class="form-control" id="fechaFin" formControlName="ContrFechFin" />
-          <span *ngIf="!validaCampo('ContrFechFin')" class="text-danger">(*)</span>
+          <span *ngIf="!validaFechaFin()" class="text-danger">(*)</span>
         </div>
 
         <div class="form-group">
@@ -101,13 +101,13 @@
             <option value="Jornada Estándar">Jornada Estándar</option>
             <option value="Jornada Extendida">Jornada Extendida</option>
           </select>
-          <span *ngIf="!validaCampo('ContrJornada')" class="text-danger">(*)</span>
+          <span *ngIf="!validaJornada()" class="text-danger">(*)</span>
         </div>
 
         <div class="form-group">
           <label for="DNI">Salario:</label>
           <input type="number" class="form-control" id="salario" formControlName="ContrSalario">
-          <span *ngIf="!validaCampo('ContrSalario')" class="text-danger">(*) Ingrese sueldo valido</span>
+          <span *ngIf="!validaSalario()" class="text-danger">(*) Ingrese sueldo valido</span>
         </div>
       </div>
       <div class="text-center col-12 mt-4">
