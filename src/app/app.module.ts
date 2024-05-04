@@ -12,15 +12,10 @@ import { LoginComponent } from './componentes/auth/login/login.component';
 import { RegistroUsuariosComponent } from './componentes/usuarios/registro-usuarios/registro-usuarios.component';
 import { RegistroBusesComponent } from './componentes/buses/registro-buses/registro-buses.component';
 import { RegistroChoferesComponent } from './componentes/choferes/registro-choferes/registro-choferes.component';
-import { AsignacionChoferComponent } from './componentes/itinerario/asignacion-chofer/asignacion-chofer.component';
-import { RegistroPasajeroComponent } from './componentes/itinerario/registro-pasajero/registro-pasajero.component';
 import { NavbarComponent } from './componentes/home/navbar/navbar.component';
 import { MenuUsuariosComponent } from './componentes/usuarios/menu-usuarios/menu-usuarios.component';
 import { MenuChoferesComponent } from './componentes/choferes/menu-choferes/menu-choferes.component';
 import { MenuBusesComponent } from './componentes/buses/menu-buses/menu-buses.component';
-import { MenuItinerarioComponent } from './componentes/itinerario/menu-itinerario/menu-itinerario.component';
-import { DistribucionAsientosComponent } from './componentes/itinerario/distribucion-asientos/distribucion-asientos.component';
-import { FooterComponent } from './componentes/home/footer/footer.component';
 import { HomeComponent } from './componentes/home/home/home.component';
 import { BienvenidaComponent } from './componentes/home/bienvenida/bienvenida.component';
 
@@ -31,15 +26,10 @@ import { BienvenidaComponent } from './componentes/home/bienvenida/bienvenida.co
     RegistroUsuariosComponent,
     RegistroBusesComponent,
     RegistroChoferesComponent,
-    AsignacionChoferComponent,
-    RegistroPasajeroComponent,
     NavbarComponent,
     MenuUsuariosComponent,
     MenuChoferesComponent,
     MenuBusesComponent,
-    MenuItinerarioComponent,
-    DistribucionAsientosComponent,
-    FooterComponent,
     HomeComponent,
     BienvenidaComponent,
   ],
