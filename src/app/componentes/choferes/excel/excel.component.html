@@ -1,0 +1,28 @@
+<div class="container">
+    <h5>Tabla de pagos</h5>
+    <p>* Hay graficiacion los meses "Julio" y "Diciembre" como aguinaldo</p>
+    <button class="btn btn-success mb-1 float-end" [routerLink]="['/registrarChoferes']">
+        <i class="bi bi-file-earmark-excel"></i> Generar Excel
+    </button>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Mes</th>
+                <th>Salario</th>
+                <th>Gratificacion</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            <tr *ngFor="let salario of arraySalario">
+                <td>{{ salario.mes }}</td>
+                <td>{{ salario.salario }}</td>
+                <td>
+                    <div *ngIf="salario.gratificacion !==0">
+                        {{ salario.gratificacion }}
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>

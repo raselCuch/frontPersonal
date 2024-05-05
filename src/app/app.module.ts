@@ -15,6 +15,7 @@ import { MenuUsuariosComponent } from './componentes/usuarios/menu-usuarios/menu
 import { MenuChoferesComponent } from './componentes/choferes/menu-choferes/menu-choferes.component';
 import { HomeComponent } from './componentes/home/home/home.component';
 import { BienvenidaComponent } from './componentes/home/bienvenida/bienvenida.component';
+import { ExcelComponent } from './componentes/choferes/excel/excel.component';
 
 @NgModule({
   declarations: [
@@ -27,6 +28,7 @@ import { BienvenidaComponent } from './componentes/home/bienvenida/bienvenida.co
     MenuChoferesComponent,
     HomeComponent,
     BienvenidaComponent,
+    ExcelComponent,
   ],
   imports: [
     BrowserModule,

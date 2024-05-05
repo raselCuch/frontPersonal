@@ -7,6 +7,7 @@ import { MenuUsuariosComponent } from './componentes/usuarios/menu-usuarios/menu
 import { MenuChoferesComponent } from './componentes/choferes/menu-choferes/menu-choferes.component';
 import { HomeComponent } from './componentes/home/home/home.component';
 import { BienvenidaComponent } from './componentes/home/bienvenida/bienvenida.component';
+import { ExcelComponent } from './componentes/choferes/excel/excel.component';
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
@@ -19,6 +20,7 @@ const routes: Routes = [
       { path: '', component: BienvenidaComponent },
       { path: 'menuUsuario', component: MenuUsuariosComponent },
       { path: 'menuChoferes', component: MenuChoferesComponent },
+      { path: 'excel', component: ExcelComponent },
     ],
   },
   { path: '**', redirectTo: 'login' },

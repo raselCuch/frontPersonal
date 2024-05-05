@@ -2,7 +2,7 @@
 
 <div class="container">
   <h5>Lista de Empleados</h5>
-  <button class="btn btn-success mb-3 float-end" [routerLink]="['/registrarChoferes']" >
+  <button class="btn btn-success mb-3 float-end" [routerLink]="['/registrarChoferes']">
     <i class="bi bi-plus-circle"></i> Agregar
   </button>
   <!-- <i class="bi bi-android2"></i> -->
@@ -13,25 +13,36 @@
         <th>Nombre completo</th>
         <th>Salario</th>
         <th>F. Ingreso</th>
-        <th>Opciones</th>
+        <th class="text-center">Opciones</th>
       </tr>
     </thead>
+
     <tbody>
       <tr *ngFor="let empleado of arrayEmpleados">
         <td>{{ empleado.EmpDni }}</td>
         <td>{{ empleado.EmpNombre}}, {{empleado.EmpApPaterno}} {{empleado.EmpApMaterno}}</td>
         <td>S/. {{ empleado.contrato.ContrSalario }}</td>
         <td>{{ empleado.EmpFechIngreso | date:"dd/MM/yyyy" }}</td>
-        <td>
-          <button class="btn btn-warning" [routerLink]="['/registrarChoferes']" [queryParams]="{ id: empleado._id, mode:'V'}">
+        <td class="text-center">
+
+          <button class="btn btn-warning" [routerLink]="['/registrarChoferes']"
+            [queryParams]="{ id: empleado._id, mode:'V'}">
             <i class="bi bi-nut"></i>
           </button>
-          <button class="btn btn-primary" [routerLink]="['/registrarChoferes']" [queryParams]="{ id: empleado._id, mode:'E'}">
+
+          <button class="btn btn-primary" [routerLink]="['/registrarChoferes']"
+            [queryParams]="{ id: empleado._id, mode:'E'}">
             <i class="bi bi-pencil"></i>
           </button>
+
+          <button class="btn btn-success" [routerLink]="['/home/excel']">
+            <i class="bi bi-file-earmark-excel"></i>
+          </button>
+
           <button class="btn btn-danger">
             <i (click)="confirmarEliminarEmpleado(empleado._id)" class="bi bi-trash"></i>
           </button>
+
         </td>
       </tr>
       <!-- Aquí agregarías más filas con los datos de los usuarios -->
