@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { IEmpleado } from '../../interfaces/empleado.interface';
 import { DatePipe } from '@angular/common';
+import { Router } from '@angular/router';
 import { EmpleadoService } from '../../services/empleado.service';
-
 
 @Component({
   selector: 'app-menu-choferes',
@@ -11,8 +11,10 @@ import { EmpleadoService } from '../../services/empleado.service';
 })
 export class MenuChoferesComponent implements OnInit {
   arrayEmpleados: IEmpleado[] = [];
-  constructor(private _empleadoService: EmpleadoService,
-    
+
+  constructor(
+    private _empleadoService: EmpleadoService,
+    private router: Router
   ) {}
 
   ngOnInit(): void {
@@ -20,7 +22,6 @@ export class MenuChoferesComponent implements OnInit {
     this.obtenerEmpleado();
     // console.log(this.isAdmin);
   }
-
 
   obtenerEmpleado() {
     this._empleadoService.getEmpleados().subscribe(
@@ -55,5 +56,26 @@ export class MenuChoferesComponent implements OnInit {
         console.log(error);
       }
     );
+  }
+
+  // private fechaInicio: Date = new Date(0, 0, 0);
+  // private fechaFin: Date = new Date(0, 0, 0);
+  // private salarioMensual: number = 0;
+
+
+  excel(fechaInicio: Date,
+    fechaFin: Date,
+    salarioMensual: number) {
+
+    this._empleadoService.setPlazoSalario(
+      fechaInicio,
+      fechaFin,
+      salarioMensual
+    );
+    console.log(fechaInicio,
+      fechaFin,
+      salarioMensual);
+    
+    this.router.navigate(['/home/excel']);
   }
 }

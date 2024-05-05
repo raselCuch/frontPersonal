@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { IPagoMes } from '../../interfaces/pagoMes.interface';
 import * as XLSX from 'xlsx';
+import { EmpleadoService } from '../../services/empleado.service';
 
 @Component({
   selector: 'app-excel',
@@ -10,11 +11,16 @@ import * as XLSX from 'xlsx';
 export class ExcelComponent {
   arraySalario: IPagoMes[] = [];
 
-  constructor() {
-    const fechaInicio = new Date(2024, 0, 1); // 1 de enero de 2024
-    const fechaFin = new Date(2024, 11, 31); // 31 de diciembre de 2024
-    const salarioMensual = 3000; // Salario mensual del empleado
+  totalSalario: number = 0;
+  totalGratificacion: number = 0;
+  totalFinal: number = 0;
 
+  constructor(private _empleadoService: EmpleadoService) {
+    const fechaInicio = new Date(this._empleadoService.getPlazoSalario(1));
+    const fechaFin = new Date(this._empleadoService.getPlazoSalario(2));
+    const salarioMensual = this._empleadoService.getPlazoSalario(3);
+
+    console.log(fechaInicio, fechaFin, salarioMensual);
     this.calcularSalarios(fechaInicio, fechaFin, salarioMensual);
   }
 
@@ -50,7 +56,10 @@ export class ExcelComponent {
         gratificacion: gatificacion,
       };
       this.arraySalario.push(salarioMes);
+      this.totalSalario += salarioMensual;
+      this.totalGratificacion += gatificacion;
     }
+    this.totalFinal = this.totalSalario + this.totalGratificacion;
   }
 
   fileName = 'ExcelSheet.xlsx';

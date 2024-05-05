@@ -104,6 +104,7 @@ export class RegistroChoferesComponent implements OnInit {
       ('0' + fecha.getDate()).slice(-2)
     );
   }
+  
   validaDni() {
     return (
       this.formChoferes.get('EmpDni')?.valid ||

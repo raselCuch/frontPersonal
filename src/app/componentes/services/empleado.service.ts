@@ -30,4 +30,32 @@ export class EmpleadoService {
   editarEmpleado(id: string, empleado: IEmpleado): Observable<IEmpleado> {
     return this.http.put<IEmpleado>(this.url + id, empleado);
   }
+
+  private fechaInicio: Date = new Date(0, 0, 0);
+  private fechaFin: Date = new Date(0, 0, 0);
+  private salarioMensual: number = 0;
+
+  setPlazoSalario(
+    vfechaInicio: Date,
+    vfechaFin: Date,
+    vsalarioMensual: number
+  ) {
+    this.fechaInicio = vfechaInicio;
+    this.fechaFin = vfechaFin;
+    this.salarioMensual = vsalarioMensual;
+  }
+
+  getPlazoSalario(indicador: number):any {
+    switch (indicador) {
+      case 1:
+        return this.fechaInicio;
+      case 2:
+        return this.fechaFin;
+      case 3:
+        return this.salarioMensual;
+
+      default:
+        return null;
+    }
+  }
 }
