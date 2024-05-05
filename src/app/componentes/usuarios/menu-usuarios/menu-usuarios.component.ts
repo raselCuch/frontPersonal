@@ -9,11 +9,18 @@ import { UsuarioService } from '../../services/usuario.service';
 })
 export class MenuUsuariosComponent implements OnInit {
   arrayUsuarios: IUsuario[] = [];
+  isAdmin: boolean = false;
 
   constructor(private _usuarioService: UsuarioService) {}
 
   ngOnInit(): void {
+    this.isAdmin = this._usuarioService.getIsAdmin();
     this.obtenerProductos();
+    console.log(this.isAdmin);
+  }
+  
+  esAdmin(){
+    return this.isAdmin;
   }
 
   obtenerProductos() {

@@ -1,8 +1,10 @@
 <div class="container">
   <h5>Lista de Usuarios</h5>
-  <button class="btn btn-success mb-3 float-end" [routerLink]="['/registrarUsuarios']">
-    <i class="bi bi-plus-circle"></i> Agregar
-  </button>
+  <div *ngIf="esAdmin()">
+    <button class="btn btn-success mb-3 float-end" [routerLink]="['/registrarUsuarios']">
+      <i class="bi bi-plus-circle"></i> Agregar
+    </button>
+  </div>
   <table class="table table-striped">
     <thead>
       <tr>

@@ -22,4 +22,21 @@ export class UsuarioService {
   guardarUsuario(usuario: IUsuario): Observable<any> {
     return this.http.post(this.url, usuario);
   }
+
+  iniciarSesion(correo: string, contrasena: string): Observable<any> {
+    return this.http.post(this.url + '/login/', {
+      UsuCorreo: correo,
+      UsuContrasena: contrasena,
+    });
+  }
+
+  private isAdmin: boolean = false;
+
+  setIsAdmin(value: boolean) {
+    this.isAdmin = value;
+  }
+
+  getIsAdmin() {
+    return this.isAdmin;
+  }
 }

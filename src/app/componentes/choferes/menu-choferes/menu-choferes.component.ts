@@ -3,6 +3,7 @@ import { IEmpleado } from '../../interfaces/empleado.interface';
 import { DatePipe } from '@angular/common';
 import { EmpleadoService } from '../../services/empleado.service';
 
+
 @Component({
   selector: 'app-menu-choferes',
   templateUrl: './menu-choferes.component.html',
@@ -10,11 +11,16 @@ import { EmpleadoService } from '../../services/empleado.service';
 })
 export class MenuChoferesComponent implements OnInit {
   arrayEmpleados: IEmpleado[] = [];
-  constructor(private _empleadoService: EmpleadoService) {}
+  constructor(private _empleadoService: EmpleadoService,
+    
+  ) {}
 
   ngOnInit(): void {
+    // this.isAdmin = this._usuarioService.getIsAdmin();
     this.obtenerEmpleado();
+    // console.log(this.isAdmin);
   }
+
 
   obtenerEmpleado() {
     this._empleadoService.getEmpleados().subscribe(
