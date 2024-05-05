@@ -1,32 +1,40 @@
 <div class="container-fluid d-flex justify-content-center align-items-center" style="height: 100vh;">
   <div class="card p-4" style="width: 800px;">
-    <h5 class="text-center mb-4">Registro Empleado</h5>
+    <h5 class="text-center mb-4">Formulario Empleado</h5>
     <form [formGroup]="formChoferes" (ngSubmit)="ejecutar()" (reset)="limpiar()" class="row">
+
+      <!-- <div *ngIf="modoVer() == 'V'">
+        <h1>Prueba</h1>
+        <input type="text" [readonly]="modoVer() == 'V'">
+      </div> -->
 
       <div class="col-md-6">
         <h5 class="text-center">Datos Empleado</h5>
 
         <div class="form-group">
           <label for="DNI">DNI:</label>
-          <input type="number" class="form-control" id="DNI" formControlName="EmpDni">
+          <input type="number" class="form-control" id="DNI" formControlName="EmpDni" [readonly]="modoVer() == 'V'">
           <span *ngIf="!validaDni()" class="text-danger">(*) Solo 8 números</span>
         </div>
 
         <div class="form-group">
           <label for="Nombres">Nombres:</label>
-          <input type="text" class="form-control" id="Nombres" formControlName="EmpNombre">
+          <input type="text" class="form-control" id="Nombres" formControlName="EmpNombre"
+            [readonly]="modoVer() == 'V'">
           <span *ngIf="!validaNombre()" class="text-danger">(*) Ingrese nombre válido</span>
         </div>
 
         <div class="form-group">
           <label for="Nombres">A. Paterno:</label>
-          <input type="text" class="form-control" id="apatern" formControlName="EmpApPaterno">
+          <input [readonly]="modoVer() == 'V'" type="text" class="form-control" id="apatern"
+            formControlName="EmpApPaterno">
           <span *ngIf="!validaApPaterno()" class="text-danger">(*) Ingrese Apellido válido</span>
         </div>
 
         <div class="form-group">
           <label for="Nombres">A. Materno:</label>
-          <input type="text" class="form-control" id="amatern" formControlName="EmpApMaterno">
+          <input [readonly]="modoVer() == 'V'" type="text" class="form-control" id="amatern"
+            formControlName="EmpApMaterno">
           <span *ngIf="!validaApMaterno()" class="text-danger">(*) Ingrese Apellido válido</span>
         </div>
 
@@ -55,13 +63,15 @@
 
         <div class="form-group">
           <label for="fechaNacimiento">Fecha de nacimiento:</label>
-          <input type="date" class="form-control" id="fechaNacimiento" formControlName="EmpFechNacimiento" />
+          <input [readonly]="modoVer() == 'V'" type="date" class="form-control" id="fechaNacimiento"
+            formControlName="EmpFechNacimiento" />
           <span *ngIf="!validaFechaNacimiento()" class="text-danger">(*)</span>
         </div>
 
         <div class="form-group">
           <label for="fechaIngreso">Fecha de ingreso:</label>
-          <input type="date" class="form-control" id="fechaIngreso" formControlName="EmpFechIngreso" />
+          <input [readonly]="modoVer() == 'V'" type="date" class="form-control" id="fechaIngreso"
+            formControlName="EmpFechIngreso" />
           <span *ngIf="!validaFechaIngreso()" class="text-danger">(*)</span>
         </div>
 
@@ -83,13 +93,15 @@
 
         <div class="form-group">
           <label for="fechaNacimiento">Fecha de Inicio:</label>
-          <input type="date" class="form-control" id="fechaInicio" formControlName="ContrFechInicio" />
+          <input [readonly]="modoVer() == 'V'" type="date" class="form-control" id="fechaInicio"
+            formControlName="ContrFechInicio" />
           <span *ngIf="!validaFechaInicio()" class="text-danger">(*)</span>
         </div>
 
         <div class="form-group">
           <label for="fechaNacimiento">Fecha de Fin:</label>
-          <input type="date" class="form-control" id="fechaFin" formControlName="ContrFechFin" />
+          <input [readonly]="modoVer() == 'V'" type="date" class="form-control" id="fechaFin"
+            formControlName="ContrFechFin" />
           <span *ngIf="!validaFechaFin()" class="text-danger">(*)</span>
         </div>
 
@@ -106,12 +118,30 @@
 
         <div class="form-group">
           <label for="DNI">Salario:</label>
-          <input type="number" class="form-control" id="salario" formControlName="ContrSalario">
+          <input [readonly]="modoVer() == 'V'" type="number" class="form-control" id="salario"
+            formControlName="ContrSalario">
           <span *ngIf="!validaSalario()" class="text-danger">(*) Ingrese sueldo valido</span>
         </div>
+
+        <div [hidden]="modoVer() !== 'V'" class="mt-4">
+          <h5 class="text-center">Datos generados</h5>
+
+          <div class="form-group mt-3 ">
+            <label>Edad actual:</label>
+            <input [readonly]="modoVer() == 'V'" type="text" class="form-control bg-info" [value]="edad">
+          </div>
+          
+          <div class="form-group mt-1">
+            <label>Antiguedad en la empresa:</label>
+            <input [readonly]="modoVer() == 'V'" type="text" class="form-control bg-info" [value]="antiguedad">
+          </div>
+
+        </div>
       </div>
+
       <div class="text-center col-12 mt-4">
-        <button type="submit" class="btn btn-primary" [disabled]="!formChoferes.valid">Guardar</button>
+        <button type="submit" class="btn btn-primary" [disabled]="!formChoferes.valid"
+          [hidden]="modoVer() == 'V'">Guardar</button>
         <button type="reset" class="btn btn-secondary">Cancelar</button>
       </div>
 

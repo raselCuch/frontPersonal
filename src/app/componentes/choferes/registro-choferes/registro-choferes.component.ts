@@ -18,6 +18,11 @@ export class RegistroChoferesComponent implements OnInit {
   mode1 = '';
   id1 = '';
 
+  fNacimiento = new Date(0, 0, 0);
+
+  edad:number = 0;
+  antiguedad:number = 0;
+
   ngOnInit(): void {
     console.log(this.formChoferes);
     this.currentRouter.queryParams
@@ -39,10 +44,17 @@ export class RegistroChoferesComponent implements OnInit {
       .subscribe((data) => {
         if (data) {
           this.setForm(data);
+          // console.log(data.EmpFechNacimiento);
+          // console.log(this.getEdad(data.EmpFechNacimiento));
+          this.edad = this.getEdad(data.EmpFechNacimiento);
+          this.antiguedad = this.getEdad(data.EmpFechIngreso);
+          console.log(this.edad);
+          console.log(this.antiguedad);
         }
-        // Haz lo que necesites con los datos del empleado
       });
+      
   }
+
   constructor(
     private router: Router,
     private _empleadoService: EmpleadoService,
@@ -251,4 +263,20 @@ export class RegistroChoferesComponent implements OnInit {
   limpiar() {
     this.router.navigate(['/home/menuChoferes']);
   }
+
+  modoVer(){
+    return this.mode1;
+  }
+
+  getEdad(fechaNacimiento: Date): number {
+    const hoy = new Date();
+    const cumpleanos = new Date(fechaNacimiento);
+    let edad = hoy.getFullYear() - cumpleanos.getFullYear();
+    const mes = hoy.getMonth() - cumpleanos.getMonth();
+    if (mes < 0 || (mes === 0 && hoy.getDate() < cumpleanos.getDate())) {
+      edad--;
+    }
+    return edad;
+  }
+
 }
