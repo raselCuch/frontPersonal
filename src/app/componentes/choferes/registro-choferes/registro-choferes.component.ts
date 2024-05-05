@@ -12,25 +12,37 @@ import { of, switchMap } from 'rxjs';
 })
 export class RegistroChoferesComponent implements OnInit {
   formChoferes!: FormGroup;
-  currentEmployee!:IEmpleado;
+  currentEmployee!: IEmpleado;
   builder = inject(FormBuilder);
-ngOnInit(): void {
-  console.log(this.formChoferes);
-  
-  this.currentRouter.queryParams.pipe(
-    switchMap(params => {
-      const id = params['id'];
-      const mode = params['mode'];
-      if(!mode) return of(null);
-      return this._empleadoService.getEmpleadoById(id);
-    })
-  ).subscribe(data => {
-    if(data){
-    this.setForm(data);
+
+  mode1 = '';
+  id1 = '';
+
+  ngOnInit(): void {
+    console.log(this.formChoferes);
+    this.currentRouter.queryParams
+      .pipe(
+        switchMap((params) => {
+          const id = params['id'];
+
+          this.id1 = id;
+
+          const mode = params['mode'];
+
+          this.mode1 = mode;
+          console.log(this.mode1);
+
+          if (!mode) return of(null);
+          return this._empleadoService.getEmpleadoById(id);
+        })
+      )
+      .subscribe((data) => {
+        if (data) {
+          this.setForm(data);
+        }
+        // Haz lo que necesites con los datos del empleado
+      });
   }
-    // Haz lo que necesites con los datos del empleado
-  });
-}
   constructor(
     private router: Router,
     private _empleadoService: EmpleadoService,
@@ -62,26 +74,35 @@ ngOnInit(): void {
       ContrSalario: ['', [Validators.required, Validators.min(0)]],
     });
   }
-  setForm(data:IEmpleado){
-    this.formChoferes.patchValue({
-      EmpDni:data.EmpDni,
-      EmpNombre:data.EmpNombre,
-      EmpApPaterno:data.EmpApPaterno,
-      EmpApMaterno:data.EmpApMaterno,
-      EmpGenero:data.EmpGenero,
-      EmpArea:data.EmpArea,
-      EmpFechNacimiento:this.formatDate(new Date(data.EmpFechNacimiento)),
-      EmpFechIngreso:this.formatDate(new Date(data.EmpFechIngreso)),
-      ContrModalidad:data.contrato.ContrModalidad,
-      ContrFechInicio:this.formatDate(new Date(data.contrato.ContrFechInicio)),
-      ContrFechFin:this.formatDate(new Date(data.contrato.ContrFechFin)),
-      ContrJornada:data.contrato.ContrJornada,
-      ContrSalario:data.contrato.ContrSalario
 
-    })
+  setForm(data: IEmpleado) {
+    this.formChoferes.patchValue({
+      EmpDni: data.EmpDni,
+      EmpNombre: data.EmpNombre,
+      EmpApPaterno: data.EmpApPaterno,
+      EmpApMaterno: data.EmpApMaterno,
+      EmpGenero: data.EmpGenero,
+      EmpArea: data.EmpArea,
+      EmpFechNacimiento: this.formatDate(new Date(data.EmpFechNacimiento)),
+      EmpFechIngreso: this.formatDate(new Date(data.EmpFechIngreso)),
+      ContrModalidad: data.contrato.ContrModalidad,
+      ContrFechInicio: this.formatDate(new Date(data.contrato.ContrFechInicio)),
+      ContrFechFin: this.formatDate(new Date(data.contrato.ContrFechFin)),
+      ContrJornada: data.contrato.ContrJornada,
+      ContrSalario: data.contrato.ContrSalario,
+    });
+    console.log(this.formChoferes.value);
   }
-  formatDate(fecha:Date){//formato: "1993-12-05"
-    return fecha.getFullYear() + '-' + ('0' + (fecha.getMonth() + 1)).slice(-2) + '-' + ('0' + fecha.getDate()).slice(-2);
+
+  formatDate(fecha: Date) {
+    //formato: "1993-12-05"
+    return (
+      fecha.getFullYear() +
+      '-' +
+      ('0' + (fecha.getMonth() + 1)).slice(-2) +
+      '-' +
+      ('0' + fecha.getDate()).slice(-2)
+    );
   }
   validaDni() {
     return (
@@ -174,8 +195,6 @@ ngOnInit(): void {
     );
   }
 
- 
-
   convertFormDataToEmpleado(formChoferes: any): IEmpleado {
     const empleado: IEmpleado = {
       EmpDni: formChoferes.EmpDni,
@@ -202,11 +221,30 @@ ngOnInit(): void {
     const empleado: IEmpleado = this.convertFormDataToEmpleado(
       this.formChoferes.value
     );
+    if (this.mode1 == undefined) {
+      // es nuevo
+      this._empleadoService.guardarEmpleado(empleado).subscribe((data) => {
+        this.router.navigate(['/home/menuChoferes']);
+      });
+      console.log(empleado);
+      // console.log('eS NUEVO');
+      
+    }
 
-    this._empleadoService.guardarEmpleado(empleado).subscribe((data) => {
-      this.router.navigate(['/home/menuChoferes']);
-    });
-    console.log(empleado);
+    if (this.mode1 == 'E') {
+      //E
+      this._empleadoService
+        .editarEmpleado(this.id1, empleado)
+        .subscribe((data) => {
+          this.router.navigate(['/home/menuChoferes']);
+        });
+      console.log(empleado);
+      console.log(this.formChoferes);
+      console.log('sdf',this.formChoferes.valid);
+    }
+
+    if (this.mode1 == 'V') {
+    }
   }
 
   limpiar() {
