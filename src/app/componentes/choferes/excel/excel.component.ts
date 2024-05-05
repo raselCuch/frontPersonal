@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { IPagoMes } from '../../interfaces/pagoMes.interface';
+import * as XLSX from 'xlsx';
 
 @Component({
   selector: 'app-excel',
@@ -11,7 +12,7 @@ export class ExcelComponent {
 
   constructor() {
     const fechaInicio = new Date(2024, 0, 1); // 1 de enero de 2024
-    const fechaFin = new Date(2025, 11, 31); // 31 de diciembre de 2024
+    const fechaFin = new Date(2024, 11, 31); // 31 de diciembre de 2024
     const salarioMensual = 3000; // Salario mensual del empleado
 
     this.calcularSalarios(fechaInicio, fechaFin, salarioMensual);
@@ -33,19 +34,35 @@ export class ExcelComponent {
       'Diciembre',
     ];
 
-    for (let fecha = new Date(fechaInicio); fecha <= fechaFin; fecha.setMonth(fecha.getMonth() + 1)) {
+    for (
+      let fecha = new Date(fechaInicio);
+      fecha <= fechaFin;
+      fecha.setMonth(fecha.getMonth() + 1)
+    ) {
       const mes = nombresMeses[fecha.getMonth()];
       let gatificacion = 0;
-      if (mes === "Julio" || mes === "Diciembre") {
+      if (mes === 'Julio' || mes === 'Diciembre') {
         gatificacion = 300;
       }
       const salarioMes: IPagoMes = {
         mes: mes,
         salario: salarioMensual,
-        gratificacion: gatificacion
+        gratificacion: gatificacion,
       };
       this.arraySalario.push(salarioMes);
     }
   }
 
+  fileName = 'ExcelSheet.xlsx';
+
+  exportExcel() {
+    let data = document.getElementById('table-data');
+    const ws: XLSX.WorkSheet = XLSX.utils.table_to_sheet(data);
+
+    const wb: XLSX.WorkBook = XLSX.utils.book_new();
+
+    XLSX.utils.book_append_sheet(wb, ws, 'Sheet1');
+
+    XLSX.writeFile(wb, this.fileName);
+  }
 }
